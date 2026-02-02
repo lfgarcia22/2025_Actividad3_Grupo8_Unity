@@ -9,30 +9,37 @@ public class PlayerController : MovementController
     [SerializeField] private InputActionReference interact;
 
 
-    // [Header("General")]
-    // [SerializeField] private RuntimeAnimatorController selectedCharacterController;
-
     private void OnEnable()
     {
-        walk.action.Enable();
-        interact.action.Enable();
+        if (walk != null)
+        {
+            walk.action.Enable();
+            walk.action.started += OnWalk;
+            walk.action.performed += OnWalk;
+            walk.action.canceled += OnWalk;
+        }
 
-        walk.action.started += OnWalk;
-        walk.action.performed += OnWalk;
-        walk.action.canceled += OnWalk;
-
-        interact.action.started += OnInteract;
+        if (interact != null)
+        {
+            interact.action.Enable();
+            interact.action.started += OnInteract;
+        }
     }
     private void OnDisable()
     {
-        walk.action.Disable();
-        interact.action.Disable();
+        if (walk != null)
+        {
+            walk.action.Disable();
+            walk.action.started -= OnWalk;
+            walk.action.performed -= OnWalk;
+            walk.action.canceled -= OnWalk;
+        }
 
-        walk.action.started -= OnWalk;
-        walk.action.performed -= OnWalk;
-        walk.action.canceled -= OnWalk;
-
-        interact.action.started -= OnInteract;
+        if (interact != null)
+        {
+            interact.action.Disable();
+            interact.action.started -= OnInteract;
+        }
     }
 
     private void OnWalk(InputAction.CallbackContext context)
@@ -43,7 +50,5 @@ public class PlayerController : MovementController
     private void OnInteract(InputAction.CallbackContext context)
     {
     }
-
-
 
 }
