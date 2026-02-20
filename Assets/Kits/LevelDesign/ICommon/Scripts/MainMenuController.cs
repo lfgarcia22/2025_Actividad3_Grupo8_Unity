@@ -17,7 +17,8 @@ namespace Assets.Kits.LevelDesign.ICommon.Scripts
 
         public void StartGame()
         {
-            SceneManagerUtils.LoadSceneByName("01_Introduction");
+            // SceneManagerUtils.LoadSceneByName("01_Introduction");
+            SceneManagerUtils.LoadSceneByName("Testing2");
         }
 
         public void ContinueFromCheckpoint()
