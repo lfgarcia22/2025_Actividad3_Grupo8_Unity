@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - UI_ContinueCheckpoint
+  - UI_Key
   layers:
   - Default
   - TransparentFX
